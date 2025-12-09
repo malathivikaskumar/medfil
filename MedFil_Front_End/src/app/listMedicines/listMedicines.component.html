@@ -1,0 +1,80 @@
+<div class="container" style="padding-top: 20px;">
+
+  <div *ngIf="errorMsg.length>0">
+    <div class="alert alert-danger alert-dismissible fade show" style="">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{errorMsg}}
+    </div>
+  </div>
+  <div *ngIf="successMsg.length>0">
+    <div class="alert alert-success alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{successMsg}}
+    </div>
+  </div>
+
+  <div class="card border-secondary bg-gray">
+    <div class="card-header" style="text-align: center" >
+      <h1 class="card-title">List Medicines</h1>
+    </div>
+    <div class="row">
+      <div class="col-3">
+      </div>
+      <div class="card-body text-capitalize col-6">
+          <div>
+            <h4>Select Shops: </h4>
+          </div>
+          <div *ngFor="let shop of shopDetailsArr; let i=index">
+              <input type="checkbox" id="inlineCheckbox1" (change)="addShopId(shop.shopId)" value="{{shop.shopId}}" />
+              <strong>{{shop.shopName}}</strong> - {{shop.address}},{{ shop.town}}, {{shop.district}}
+          </div>
+          <div style="text-align: center">
+            <button class="btn btn-success btn-lg" (click)="listMedicine()">Search</button>
+          </div>
+      </div>
+    <div class="col-3">
+
+    </div>
+    </div>
+  </div>
+
+  <div *ngIf="medicineDetails.length>0">
+    <h2>Medicine Available in below shops</h2>
+
+    <div class="card border-secondary bg-light mb-3 row" *ngFor="let medicine of medicineDetails">
+      <div class="card-header">
+          <h5 class="card-title text-primary">{{medicine.shopDetails.shopName}}</h5>
+        <button class="button btn-danger" style="float: right;" (click)="deleteMedicine(medicine.medId)">Delete</button>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <img src="assets/images/img_2.png" alt="Card image cap">
+        </div>
+        <div class="card-body text-primary col-4 fw-bold row">
+            <table>
+              <tr>
+                <td><span style="color: black;">Name:</span></td>
+                <td><p>{{medicine.medName}},</p></td>
+              </tr>
+              <tr>
+                <td><span style="color: black;">Quantity:</span></td>
+                <td><p>{{medicine.medQuantity}},</p></td>
+              </tr>
+              <tr>
+                <td><span style="color: black;">cost:</span></td>
+                <td><p>{{medicine.medCost}},</p></td>
+              </tr>
+              <tr>
+                <td><span style="color: black;">expiryDate:</span></td>
+                <td><p>{{medicine.medExpiryDate}},</p></td>
+              </tr>
+              <tr>
+                <td><span style="color: black;">Description:</span></td>
+                <td><p>{{medicine.medDescription}},</p></td>
+              </tr>
+          </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

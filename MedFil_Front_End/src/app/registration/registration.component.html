@@ -1,0 +1,257 @@
+<div style="background-color: #bfd1ec">
+  <!-- Sign up form -->
+
+  <div class="main">
+
+    <section class="signup">
+
+      <div class="container">
+
+
+        <div class="signup-content">
+          <div class="signup-form">
+            <div *ngIf="isUser">
+              <h2 class="form-title">User Sign up</h2>
+            </div>
+            <div *ngIf="!isUser">
+              <h2 class="form-title">merchant Sign up</h2>
+            </div>
+            <div *ngIf="successMsg.length>0">
+              <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{successMsg}}
+              </div>
+            </div>
+            <div *ngIf="errorMsg.length>0">
+              <div class="alert alert-danger alert-dismissible fade show" style="">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{errorMsg}}
+              </div>
+            </div>
+            <form [formGroup]="registration" class="register-form" id="register-form" (ngSubmit)="registerUser()">
+              <div *ngIf="registerFormControl.firstName?.invalid && (registerFormControl.firstName?.dirty || registerFormControl.firstName?.touched)"
+                   class="alert alert-danger alert-dismissible">
+                <div *ngIf="registration.controls.firstName.errors?.required">
+                  First Name is required.
+                </div>
+                <div *ngIf="registerFormControl.firstName.errors?.minlength">
+                  First Name must be at least 4 characters long.
+                </div>
+                <div *ngIf="registerFormControl.firstName.errors?.maxlength">
+                  First Name must be at most 10 characters long.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="firstname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                <input type="text" name="firstname" id="firstname" formControlName="firstName" placeholder="Your First Name"/>
+              </div>
+              <div *ngIf="registerFormControl.lastname?.invalid && (registerFormControl.lastname?.dirty || registerFormControl.lastname?.touched)"
+                   class="alert alert-danger alert-dismissible">
+                <div *ngIf="registerFormControl.lastname.errors?.required">
+                  Last Name is required.
+                </div>
+                <div *ngIf="registerFormControl.lastname.errors?.minlength">
+                  Last Name must be at least 4 characters long.
+                </div>
+                <div *ngIf="registerFormControl.lastname.errors?.maxlength">
+                  Last Name must be at most 10 characters long.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="lastname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                <input type="text" name="lastname" formControlName="lastname" id="lastname" placeholder="Your Last Name"/>
+              </div>
+
+              <div *ngIf="registerFormControl.userEmail?.invalid && (registerFormControl.userEmail?.dirty || registerFormControl.userEmail?.touched)"
+                   class="alert alert-danger alert-dismissible">
+                <div *ngIf="registerFormControl.userEmail.errors?.required">
+                  Email is required.
+                </div>
+                <div *ngIf="registerFormControl.userEmail.errors?.email">
+                  Email format is wrong.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                <input type="email" name="email" formControlName="userEmail" id="email" placeholder="Your Email"/>
+              </div>
+
+              <div *ngIf="registerFormControl.userPassword?.invalid && (registerFormControl.userPassword?.dirty || registerFormControl.userPassword?.touched)"
+                   class="alert alert-danger alert-dismissible">
+                <div *ngIf="registerFormControl.userPassword.errors?.required">
+                  Password is required.
+                </div>
+                <div *ngIf="registerFormControl.userPassword.errors?.minlength">
+                  Password must be at least 4 characters long.
+                </div>
+                <div *ngIf="registerFormControl.userPassword.errors?.maxlength">
+                  Password must be at most 10 characters long.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                <input type="password" name="pass" formControlName="userPassword" id="pass" placeholder="Password"/>
+              </div>
+
+              <div class="form-group">
+                <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                <input type="password" name="re_pass" formControlName="confirmpassword" id="re_pass" placeholder="Repeat your password"/>
+              </div>
+
+              <div *ngIf="!isUser">
+                <form [formGroup]="shopForm" class="register-form" id="shop-form">
+                <h2 class="form-title">Shop Details</h2>
+                <div class="form-group">
+                  <label for="shopname"><i class="zmdi zmdi-store material-icons-name"></i></label>
+                  <input type="text" name="shopname" id="shopname" formControlName="shopname"  placeholder="Your Shop Name"/>
+                  <div *ngIf="shopFormControl.shopname?.invalid && (shopFormControl.shopname?.dirty || shopFormControl.shopname?.touched)"
+                       class="alert alert-danger alert-dismissible">
+                    <div *ngIf="shopFormControl.shopname.errors?.required">
+                      shopname is required.
+                    </div>
+                    <div *ngIf="shopFormControl.shopname.errors?.minLength">
+                      shopname must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="shopFormControl.shopname.errors?.maxLength">
+                      shopname must be at most 10 characters long.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="address"><i class="zmdi zmdi-city material-icons-name"></i></label>
+                  <input type="text" name="address" id="address" formControlName="address" placeholder="address"/>
+                  <div *ngIf="shopFormControl.address?.invalid && (shopFormControl.address?.dirty || shopFormControl.address?.touched)"
+                       class="alert alert-danger alert-dismissible">
+                    <div *ngIf="shopFormControl.address.errors?.required">
+                      address is required.
+                    </div>
+                    <div *ngIf="shopFormControl.address.errors?.minlength">
+                      address must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="shopFormControl.address.errors?.maxlength">
+                      address must be at most 10 characters long.
+                    </div>
+                  </div>
+                </div>
+
+
+                  <div class="form-group">
+                    <label for="town"><i class="zmdi zmdi-city material-icons-name"></i></label>
+                    <input type="text" name="town" id="town" formControlName="town" placeholder="town"/>
+                    <div *ngIf="shopFormControl.town?.invalid && (shopFormControl.town?.dirty || shopFormControl.town?.touched)"
+                         class="alert alert-danger alert-dismissible">
+                      <div *ngIf="shopFormControl.town.errors?.required">
+                        town is required.
+                      </div>
+                      <div *ngIf="shopFormControl.town.errors?.minlength">
+                        town must be at least 4 characters long.
+                      </div>
+                      <div *ngIf="shopFormControl.town.errors?.maxlength">
+                        town must be at most 10 characters long.
+                      </div>
+                    </div>
+                  </div>
+
+                    <div class="form-group">
+                      <label for="district"><i class="zmdi zmdi-city material-icons-name"></i></label>
+                      <input type="text" name="district" id="district" formControlName="district" placeholder="district"/>
+                      <div *ngIf="shopFormControl.district?.invalid && (shopFormControl.district?.dirty || shopFormControl.district?.touched)"
+                           class="alert alert-danger alert-dismissible">
+                        <div *ngIf="shopFormControl.district.errors?.required">
+                          district is required.
+                        </div>
+                        <div *ngIf="shopFormControl.district.errors?.minlength">
+                          district must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="shopFormControl.district.errors?.maxlength">
+                          district must be at most 10 characters long.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="state"><i class="zmdi zmdi-city material-icons-name"></i></label>
+                      <input type="text" name="state" id="state" formControlName="state" placeholder="state"/>
+                      <div *ngIf="shopFormControl.state?.invalid && (shopFormControl.state?.dirty || shopFormControl.state?.touched)"
+                           class="alert alert-danger alert-dismissible">
+                        <div *ngIf="shopFormControl.state.errors?.required">
+                          state is required.
+                        </div>
+                        <div *ngIf="shopFormControl.state.errors?.minlength">
+                          state must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="shopFormControl.state.errors?.maxlength">
+                          state must be at most 10 characters long.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="country"><i class="zmdi zmdi-city material-icons-name"></i></label>
+                      <input type="text" name="Country" id="country" formControlName="country"  placeholder="country"/>
+                      <div *ngIf="shopFormControl.country?.invalid && (shopFormControl.country?.dirty || shopFormControl.country?.touched)"
+                           class="alert alert-danger alert-dismissible">
+                        <div *ngIf="shopFormControl.country.errors?.required">
+                          country is required.
+                        </div>
+                        <div *ngIf="shopFormControl.country.errors?.minlength">
+                          country must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="shopFormControl.country.errors?.maxlength">
+                          country must be at most 10 characters long.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="pincode"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                      <input type="number" name="pincode" id="pincode" formControlName="pincode" placeholder="pincode"/>
+                      <div *ngIf="shopFormControl.pincode?.invalid && (shopFormControl.pincode?.dirty || shopFormControl.pincode?.touched)"
+                           class="alert alert-danger alert-dismissible">
+                        <div *ngIf="shopFormControl.pincode.errors?.required">
+                          pincode is required.
+                        </div>
+                        <div *ngIf="shopFormControl.pincode.errors?.minLength">
+                          pincode must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="shopFormControl.pincode.errors?.maxLength">
+                          pincode must be at most 10 characters long.
+                        </div>
+                      </div>
+                    </div>
+                </form>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" name="agree-term" formControlName="checkbox" id="agree-term" class="agree-term"/>
+                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                <div *ngIf="registerFormControl.checkbox?.invalid && (registerFormControl.checkbox?.touched)"
+                     class="alert alert-danger alert-dismissible">
+                  <div *ngIf="registerFormControl.checkbox.errors?.required">
+                    checkbox is required.
+                  </div>
+                </div>
+              </div>
+              <div class="form-bgroup form-button">
+                <input type="submit" name="signup" id="signup" class="form-submit" [disabled]="registration.invalid" ngvalue="Register"/>
+              </div>
+            </form>
+          </div>
+          <div class="signup-image">
+            <figure><img src="assets/images/signup-image.jpg" alt="sing up image"></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  </div>
+
+  <router-outlet></router-outlet>
+  <!-- JS -->
+
+</div>
+

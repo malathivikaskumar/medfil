@@ -1,0 +1,139 @@
+<div class="container" style="padding: 20px;">
+  <div *ngIf="successMsg.length>0">
+    <div class="alert alert-success alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{successMsg}}
+    </div>
+  </div>
+  <div *ngIf="errorMsg.length>0">
+    <div class="alert alert-danger alert-dismissible fade show" style="">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{errorMsg}}
+    </div>
+  </div>
+<form [formGroup]="shopForm" class="register-form" id="shop-form">
+    <h2 class="form-title">Add new shop</h2>
+    <div class="form-group">
+      <label for="shopName"><i class="zmdi zmdi-store material-icons-name"></i></label>
+      <input type="text" name="shopName" id="shopName" formControlName="shopName"  placeholder="Your Shop Name"/>
+      <div *ngIf="shopFormControl.shopName?.invalid && (shopFormControl.shopName?.dirty || shopFormControl.shopName?.touched)"
+           class="alert alert-danger alert-dismissible">
+        <div *ngIf="shopFormControl.shopName.errors?.required">
+          shopName is required.
+        </div>
+        <div *ngIf="shopFormControl.shopName.errors?.minLength">
+          shopName must be at least 4 characters long.
+        </div>
+        <div *ngIf="shopFormControl.shopName.errors?.maxLength">
+          shopName must be at most 10 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address"><i class="zmdi zmdi-city material-icons-name"></i></label>
+      <input type="text" name="address" id="address" formControlName="address" placeholder="address"/>
+      <div *ngIf="shopFormControl.address?.invalid && (shopFormControl.address?.dirty || shopFormControl.address?.touched)"
+           class="alert alert-danger alert-dismissible">
+        <div *ngIf="shopFormControl.address.errors?.required">
+          address is required.
+        </div>
+        <div *ngIf="shopFormControl.address.errors?.minlength">
+          address must be at least 4 characters long.
+        </div>
+        <div *ngIf="shopFormControl.address.errors?.maxlength">
+          address must be at most 10 characters long.
+        </div>
+      </div>
+    </div>
+
+
+      <div class="form-group">
+        <label for="town"><i class="zmdi zmdi-city material-icons-name"></i></label>
+        <input type="text" name="town" id="town" formControlName="town" placeholder="town"/>
+        <div *ngIf="shopFormControl.town?.invalid && (shopFormControl.town?.dirty || shopFormControl.town?.touched)"
+             class="alert alert-danger alert-dismissible">
+          <div *ngIf="shopFormControl.town.errors?.required">
+            town is required.
+          </div>
+          <div *ngIf="shopFormControl.town.errors?.minlength">
+            town must be at least 4 characters long.
+          </div>
+          <div *ngIf="shopFormControl.town.errors?.maxlength">
+            town must be at most 10 characters long.
+          </div>
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label for="district"><i class="zmdi zmdi-city material-icons-name"></i></label>
+          <input type="text" name="district" id="district" formControlName="district" placeholder="district"/>
+          <div *ngIf="shopFormControl.district?.invalid && (shopFormControl.district?.dirty || shopFormControl.district?.touched)"
+               class="alert alert-danger alert-dismissible">
+            <div *ngIf="shopFormControl.district.errors?.required">
+              district is required.
+            </div>
+            <div *ngIf="shopFormControl.district.errors?.minlength">
+              district must be at least 4 characters long.
+            </div>
+            <div *ngIf="shopFormControl.district.errors?.maxlength">
+              district must be at most 10 characters long.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="state"><i class="zmdi zmdi-city material-icons-name"></i></label>
+          <input type="text" name="state" id="state" formControlName="state" placeholder="state"/>
+          <div *ngIf="shopFormControl.state?.invalid && (shopFormControl.state?.dirty || shopFormControl.state?.touched)"
+               class="alert alert-danger alert-dismissible">
+            <div *ngIf="shopFormControl.state.errors?.required">
+              state is required.
+            </div>
+            <div *ngIf="shopFormControl.state.errors?.minlength">
+              state must be at least 4 characters long.
+            </div>
+            <div *ngIf="shopFormControl.state.errors?.maxlength">
+              state must be at most 10 characters long.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="country"><i class="zmdi zmdi-city material-icons-name"></i></label>
+          <input type="text" name="Country" id="country" formControlName="country"  placeholder="country"/>
+          <div *ngIf="shopFormControl.country?.invalid && (shopFormControl.country?.dirty || shopFormControl.country?.touched)"
+               class="alert alert-danger alert-dismissible">
+            <div *ngIf="shopFormControl.country.errors?.required">
+              country is required.
+            </div>
+            <div *ngIf="shopFormControl.country.errors?.minlength">
+              country must be at least 4 characters long.
+            </div>
+            <div *ngIf="shopFormControl.country.errors?.maxlength">
+              country must be at most 10 characters long.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="pincode"><i class="zmdi zmdi-account material-icons-name"></i></label>
+          <input type="number" name="pincode" id="pincode" formControlName="pincode" placeholder="pincode"/>
+          <div *ngIf="shopFormControl.pincode?.invalid && (shopFormControl.pincode?.dirty || shopFormControl.pincode?.touched)"
+               class="alert alert-danger alert-dismissible">
+            <div *ngIf="shopFormControl.pincode.errors?.required">
+              pincode is required.
+            </div>
+            <div *ngIf="shopFormControl.pincode.errors?.minLength">
+              pincode must be at least 4 characters long.
+            </div>
+            <div *ngIf="shopFormControl.pincode.errors?.maxLength">
+              pincode must be at most 10 characters long.
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-button" style="text-align: end">
+            <button class="btn btn-success btn-lg" (click)="addshops()" [disabled]="shopForm.invalid">ADD</button>
+        </div>
+    </form>
+</div>
